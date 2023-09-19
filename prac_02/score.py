@@ -7,7 +7,7 @@ from random import randint
 
 
 def main():
-    """Asks for a score and rates it."""
+    """Asks for a score and rates it, also tests a random score."""
     score = int(input("Enter score: "))
     print(test_score(score))
     random_score = randint(0, 100)
