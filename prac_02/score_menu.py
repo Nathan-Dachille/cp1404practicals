@@ -20,4 +20,9 @@ def test_score(score: int) -> str:
     return result
 
 
+def show_stars(stars):
+    """Prints stars number of stars."""
+    print(stars * "*")
+
+
 main()
