@@ -9,12 +9,17 @@ Answer the following questions:
     Don't allow the denominator to be equal to 0.
 """
 
-try:
-    numerator = int(input("Enter the numerator: "))
-    denominator = int(input("Enter the denominator: "))
-    fraction = numerator / denominator
-    print(fraction)
-except ValueError:
-    print("Numerator and denominator must be valid numbers!")
-except ZeroDivisionError:
-    print("Cannot divide by zero!")
+is_valid_input = False
+while not is_valid_input:
+    try:
+        numerator = int(input("Enter the numerator: "))
+        denominator = int(input("Enter the denominator: "))
+        if denominator == 0:
+            print("Denominator cannot be 0!")
+        else:
+            is_valid_input = True
+    except ValueError:
+        print("Numerator and denominator must be valid numbers!")
+# Error will never occur
+fraction = numerator / denominator  # type: ignore
+print(fraction)
