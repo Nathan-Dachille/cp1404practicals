@@ -1,6 +1,6 @@
 """Asks for and stores email addresses and names.
-Estimate: 20
-Actual:
+Estimate: 20 minutes
+Actual:   34 minutes
 """
 
 
