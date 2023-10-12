@@ -7,6 +7,7 @@ FILENAME = "wimbledon.csv"
 
 
 def main():
+    """Gets the frequency of champions and countries winning and displays in terminal."""
     with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
         champions_to_times_won = get_frequency(in_file, "Champion")
         countries_to_times_won = get_frequency(in_file, "Country")
