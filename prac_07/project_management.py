@@ -29,8 +29,8 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            # Filter
-            pass
+            date_string = input("Show projects that start after date (dd/mm/yy): ")
+            filter_by_date(projects, date_string)
         elif choice == "A":
             # Add
             pass
@@ -71,11 +71,18 @@ def display_projects(projects):
     incomplete_projects = [project for project in projects if not project.is_completed()]
     print("Incomplete Projects:")
     for project in incomplete_projects:
-        print(f"\t{project}")
+        print(f"  {project}")
     print("Completed Projects:")
     completed_projects = [project for project in projects if project.is_completed()]
     for project in completed_projects:
-        print(f"\t{project}")
+        print(f"  {project}")
+
+
+def filter_by_date(projects, date_string):
+    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    for project in projects:
+        if project.start_date > date:
+            print(project)
 
 
 if __name__ == '__main__':
