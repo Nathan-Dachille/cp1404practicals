@@ -32,8 +32,20 @@ def main():
         name = input("Name: ")
 
     guitars.sort()
+
     for guitar in guitars:
         print(guitar)
+
+    write_guitars(guitars)
+
+
+def write_guitars(guitars):
+    """Write guitar object properties to csv.file."""
+    with open(FILENAME, 'w', newline='') as out_file:
+        writer = csv.writer(out_file)
+        for guitar in guitars:
+            row = [guitar.name, guitar.year, guitar.cost]
+            writer.writerow(row)
 
 
 def read_guitars():
