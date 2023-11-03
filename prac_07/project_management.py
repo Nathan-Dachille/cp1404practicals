@@ -17,6 +17,8 @@ MENU = """- (L)oad projects
 
 
 def main():
+    project_filename = input("Enter the project filename to load: ")
+    projects = load_projects(project_filename)
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
@@ -34,8 +36,7 @@ def main():
         elif choice == "A":
             add_project(projects)
         elif choice == "U":
-            # Update
-            pass
+            update_project(projects)
         else:
             print("Invalid option")
         print(MENU)
@@ -86,45 +87,90 @@ def filter_by_date(projects, date_string):
 
 def add_project(projects):
     print("Let's add a new project")
-    (name, date, cost, completion) = get_valid_project(None)
-    projects.append(Project(name, date, cost, completion))
-
-
-def get_valid_project(new: None):
-    name = input(f"{new}Name: ")
+    name = input("Name: ")
     is_valid_date = False
     is_valid_priority = False
     is_valid_cost = False
     is_valid_completion = False
     while not is_valid_date:
         try:
-            date_string = input(f"{new}Start date (dd/mm/yy): ")
+            date_string = input("Start date (dd/mm/yy): ")
             date = datetime.datetime.strptime(date_string, "%d/%mim/%Y").date()
             is_valid_date = True
         except ValueError:
             print("Enter valid date.")
     while not is_valid_priority:
         try:
-            priority = int(input(f"{new}Priority: "))
+            priority = int(input("Priority: "))
             if priority >= 1:
                 is_valid_priority = True
+            else:
+                print("Enter valid priority.")
         except TypeError:
             print("Enter valid priority.")
     while not is_valid_cost:
         try:
-            cost_estimate = float(input(f"{new}Cost estimate: $"))
+            cost_estimate = float(input("Cost estimate: $"))
             if cost_estimate >= 0:
                 is_valid_cost = True
+            else:
+                print("Enter valid cost estimate.")
         except TypeError:
-            print("Enter valid cost.")
+            print("Enter valid cost estimate.")
     while not is_valid_completion:
         try:
-            completion_percent = int(input(f"{new}Percent complete: "))
-            if 0 < completion_percent <= 100:
+            completion_percentage = int(input("Percent complete: "))
+            if 0 < completion_percentage <= 100:
                 is_valid_completion = True
+            else:
+                print("Enter valid completion percent.")
         except TypeError:
             print("Enter valid completion percent.")
-    return name, date, priority, completion_percent
+    projects.append(Project(name, date, cost_estimate, completion_percentage))
+
+
+def update_project(projects):
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+    is_valid_option = False
+    is_valid_priority = False
+    is_valid_completion = False
+    while not is_valid_option:
+        try:
+            index = int(input("Project choice: "))
+            if 0 < index <= len(projects) - 1:
+                is_valid_option = True
+            else:
+                print("Enter valid choice.")
+        except TypeError:
+            print("Enter valid choice.")
+    while not is_valid_priority:
+        try:
+            priority = input("New Priority: ")
+            if priority == '':
+                is_valid_priority = True
+                break
+            priority = int(priority)
+            if priority >= 1:
+                is_valid_priority = True
+            else:
+                print("Enter valid priority.")
+        except TypeError:
+            print("Enter valid priority.")
+    while not is_valid_completion:
+        try:
+            completion_percentage = int(input("New Percentage: "))
+            if 0 < completion_percentage <= 100:
+                is_valid_completion = True
+            else:
+                print("Enter valid percentage")
+        except TypeError:
+            print("Enter valid percentage")
+    if type(priority) == int:
+        projects[index].priority = priority
+    if type(completion_percentage) == int:
+        projects[index].completion_percentage = completion_percentage
+
 
 
 if __name__ == '__main__':
