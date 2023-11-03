@@ -4,14 +4,14 @@ ACTUAL TIME: 2:00
 """
 
 import csv
-from project import Project
 import datetime
+from project import Project
 
-MENU = """- (L)oad projects  
-- (S)ave projects  
-- (D)isplay projects  
+MENU = """- (L)oad projects
+- (S)ave projects
+- (D)isplay projects
 - (F)ilter projects by date
-- (A)dd new project  
+- (A)dd new project
 - (U)pdate project
 - (Q)uit"""
 
@@ -48,7 +48,7 @@ def main():
 def load_projects(project_filename):
     """Load projects to a list from a file."""
     projects = []
-    with open(project_filename, 'r', newline='') as in_file:
+    with open(project_filename, 'r', newline='', encoding='utf-8') as in_file:
         in_file.readline()
         reader = csv.reader(in_file, delimiter='\t')
         for row in reader:
@@ -60,7 +60,7 @@ def load_projects(project_filename):
 
 def save_projects(project_filename, projects):
     """Load projects to a file from a list of projects."""
-    with open(project_filename, 'w', newline='') as out_file:
+    with open(project_filename, 'w', newline='', encoding='utf-8') as out_file:
         writer = csv.writer(out_file, delimiter='\t')
         header = ["Name", "Start Date", "Priority", "Cost Estimate", "Completion Percentage"]
         writer.writerow(header)
@@ -173,9 +173,9 @@ def update_project(projects):
                 print("Enter valid percentage")
         except TypeError:
             print("Enter valid percentage")
-    if type(priority) == int:
+    if isinstance(priority, int):
         projects[index].priority = priority
-    if type(completion_percentage) == int:
+    if isinstance(completion_percentage, int):
         projects[index].completion_percentage = completion_percentage
 
 
