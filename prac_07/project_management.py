@@ -1,6 +1,6 @@
 """Project Management Exercise for Prac_07.
 ESTIMATED TIME: 45
-ACTUAL TIME:
+ACTUAL TIME: 2:00
 """
 
 import csv
@@ -17,6 +17,7 @@ MENU = """- (L)oad projects
 
 
 def main():
+    """Display Menu and Call appropriate function."""
     project_filename = input("Enter the project filename to load: ")
     projects = load_projects(project_filename)
     print(MENU)
@@ -41,10 +42,11 @@ def main():
             print("Invalid option")
         print(MENU)
         choice = input(">>> ").upper()
-    print("Thank you.")
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(project_filename):
+    """Load projects to a list from a file."""
     projects = []
     with open(project_filename, 'r', newline='') as in_file:
         in_file.readline()
@@ -57,6 +59,7 @@ def load_projects(project_filename):
 
 
 def save_projects(project_filename, projects):
+    """Load projects to a file from a list of projects."""
     with open(project_filename, 'w', newline='') as out_file:
         writer = csv.writer(out_file, delimiter='\t')
         header = ["Name", "Start Date", "Priority", "Cost Estimate", "Completion Percentage"]
@@ -68,6 +71,7 @@ def save_projects(project_filename, projects):
 
 
 def display_projects(projects):
+    """Display projects and whether they are complete."""
     incomplete_projects = [project for project in projects if not project.is_completed()]
     print("Incomplete Projects:")
     for project in incomplete_projects:
@@ -79,6 +83,7 @@ def display_projects(projects):
 
 
 def filter_by_date(projects, date_string):
+    """Display projects that start after a certain date."""
     date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
     for project in projects:
         if project.start_date > date:
@@ -86,6 +91,7 @@ def filter_by_date(projects, date_string):
 
 
 def add_project(projects):
+    """Add a valid project from user input."""
     print("Let's add a new project")
     name = input("Name: ")
     is_valid_date = False
@@ -94,8 +100,8 @@ def add_project(projects):
     is_valid_completion = False
     while not is_valid_date:
         try:
-            date_string = input("Start date (dd/mm/yy): ")
-            date = datetime.datetime.strptime(date_string, "%d/%mim/%Y").date()
+            date_string = input("Start date (dd/mm/yyyy): ")
+            date = datetime.datetime.strptime(date_string, "%d/%mm/%Y").date()
             is_valid_date = True
         except ValueError:
             print("Enter valid date.")
@@ -130,6 +136,7 @@ def add_project(projects):
 
 
 def update_project(projects):
+    """Update the priority and/or the completion percentage of a project."""
     for i, project in enumerate(projects):
         print(f"{i} {project}")
     is_valid_option = False
@@ -170,7 +177,6 @@ def update_project(projects):
         projects[index].priority = priority
     if type(completion_percentage) == int:
         projects[index].completion_percentage = completion_percentage
-
 
 
 if __name__ == '__main__':
