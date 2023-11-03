@@ -17,6 +17,7 @@ def main():
             guitar = Guitar(row[0], int(row[1]), float(row[2]))
             guitars.append(guitar)
 
+    guitars.sort()
     for guitar in guitars:
         print(guitar)
 
