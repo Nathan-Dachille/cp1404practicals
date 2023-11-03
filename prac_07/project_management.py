@@ -22,10 +22,10 @@ def main():
     while choice != "Q":
         if choice == "L":
             project_filename = input("Enter the project filename to load: ")
-            load_projects(project_filename)
+            projects = load_projects(project_filename)
         elif choice == "S":
-            # SAVE
-            pass
+            project_filename = input("Enter the project filename to save: ")
+            save_projects(project_filename, projects)
         elif choice == "D":
             # Display
             pass
@@ -54,4 +54,15 @@ def load_projects(project_filename):
             date = datetime.datetime.strptime(row[1], "%d/%m/%Y").date()
             project = Project(row[0], date, int(row[2]), float(row[3]), int(row[4]))
             projects.append(project)
+    return projects
 
+
+def save_projects(project_filename, projects):
+    with open(project_filename, 'w', newline='') as out_file:
+        writer = csv.writer(out_file, delimiter='\t')
+        header = ["Name", "Start Date", "Priority", "Cost Estimate", "Completion Percentage"]
+        writer.writerow(header)
+        for project in projects:
+            row = [project.name, project.start_date, project.priority,
+                   project.cost_estimate, project.completion_percentage]
+            writer.writerow(row)
