@@ -15,3 +15,6 @@ class Project:
         """Returns string representing Project data."""
         return (f"{self.name}, start:{self.start_date}, priority {self.priority}, "
                 f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage}%")
+
+    def is_completed(self):
+        return self.completion_percentage == 100

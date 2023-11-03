@@ -27,8 +27,7 @@ def main():
             project_filename = input("Enter the project filename to save: ")
             save_projects(project_filename, projects)
         elif choice == "D":
-            # Display
-            pass
+            display_projects(projects)
         elif choice == "F":
             # Filter
             pass
@@ -66,3 +65,18 @@ def save_projects(project_filename, projects):
             row = [project.name, project.start_date, project.priority,
                    project.cost_estimate, project.completion_percentage]
             writer.writerow(row)
+
+
+def display_projects(projects):
+    incomplete_projects = [project for project in projects if not project.is_completed()]
+    print("Incomplete Projects:")
+    for project in incomplete_projects:
+        print(f"\t{project}")
+    print("Completed Projects:")
+    completed_projects = [project for project in projects if project.is_completed()]
+    for project in completed_projects:
+        print(f"\t{project}")
+
+
+if __name__ == '__main__':
+    main()
