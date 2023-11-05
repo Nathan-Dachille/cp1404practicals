@@ -52,7 +52,6 @@ def read_guitars():
     """Reads CSV and returns list of Guitar objects."""
     guitars = []
     with open(FILENAME, 'r', newline='') as in_file:
-        in_file.readline()
         reader = csv.reader(in_file)
         for row in reader:
             guitar = Guitar(row[0], int(row[1]), float(row[2]))
