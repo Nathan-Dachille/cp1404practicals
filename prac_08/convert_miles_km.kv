@@ -1,0 +1,23 @@
+BoxLayout:
+    orientation: "vertical"
+    BoxLayout:
+        orientation: "horizontal"
+        TextInput:
+            id: input_distance
+            size_hint_x: 0.8
+        BoxLayout:
+            size_hint_x: 0.2
+            orientation: 'vertical'
+            Button:
+                text: "Up"
+                on_press: App.increment_distance()
+            Button:
+                text: "Down"
+                on_press: App.decrement_distance()
+    Button:
+        text: "Convert miles to km"
+        on_press: App.convert()
+    Label:
+        id: output_label
+        text: ''
+        color: (1, 1, 0, 1)
