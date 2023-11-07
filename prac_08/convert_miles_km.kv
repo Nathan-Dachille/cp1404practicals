@@ -6,6 +6,8 @@ BoxLayout:
             id: input_distance
             text: "1"
             size_hint_x: 0.8
+            multiline: False
+            on_text_validate: app.convert()
         BoxLayout:
             size_hint_x: 0.2
             orientation: 'vertical'
