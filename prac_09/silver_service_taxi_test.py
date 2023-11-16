@@ -8,4 +8,3 @@ silver_service_taxi.start_fare()
 silver_service_taxi.drive(18)
 print(silver_service_taxi)
 print(f"Current fare: {silver_service_taxi.get_fare()}")
-

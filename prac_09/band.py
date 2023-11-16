@@ -3,6 +3,7 @@
 
 class Band:
     """Band class."""
+
     def __init__(self, name):
         """Initialise Band class"""
         self.name = name
