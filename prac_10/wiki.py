@@ -6,6 +6,7 @@ MENU = """(S)earch Wikipedia
 
 
 def main():
+    """Ask user to search Wikipedia or Get a page summary."""
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "":
@@ -22,6 +23,7 @@ def main():
 
 
 def search_wikipedia(query):
+    """Search Wikipedia for a specific query and prints results."""
     titles = wikipedia.search(query)
     print(f"The query '{query}' returned {len(titles)} results: ")
     for title in titles:
@@ -29,6 +31,7 @@ def search_wikipedia(query):
 
 
 def get_page_summary(page_title):
+    """Returns title, summary and url of Wikipedia Page."""
     try:
         summary = wikipedia.summary(page_title, auto_suggest=False)
         print(page_title)
