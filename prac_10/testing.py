@@ -25,6 +25,19 @@ def is_long_word(word, length=5):
     return len(word) >= length
 
 
+def make_sentence(phrase):
+    """
+    Convert a phrase to start with capital and end with full stop.
+    >>> make_sentence("hello")
+    Hello.
+    >>> make_sentence("It is an ex parrot.")
+    It is an ex parrot.
+    >>> make_sentence("have a great day")
+    Have a great day.
+    """
+    pass
+
+
 def run_tests():
     """Run the tests on the functions."""
     # assert test with no message - used to see if the function works properly
@@ -50,11 +63,9 @@ def run_tests():
 
 run_tests()
 
-# TODO: 3. Uncomment the following line and run the doctests
 # (PyCharm may see your >>> doctest comments and run doctests anyway.)
 doctest.testmod()
 
-# TODO: 4. Fix the failing is_long_word function
 # (don't change the tests, change the function!)
 
 # TODO: 5. Write and test a function to format a phrase as a sentence,
